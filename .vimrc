@@ -18,9 +18,9 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'https://github.com/scrooloose/nerdtree.git'  "'NERDTree'
+Plugin 'https://github.com/scrooloose/nerdtree.git'  
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'https://github.com/vim-scripts/taglist.vim.git'  "taglist
+Plugin 'https://github.com/vim-scripts/taglist.vim.git' 
 Bundle 'Yggdroot/indentLine'
 Bundle 'ctrlp.vim'
 
@@ -31,11 +31,17 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'django_templates.vim'
 Bundle 'Django-Projects'
 Plugin 'Valloric/vim-operator-highlight'
+Plugin 'vim-scripts/winmanager'
 "Plugin 'vim-scripts/bufexplorer.zip'
+"When navigating in NERDTree, select file or directory, press 'm' key, and NERDTree menu will appear. Press 'x' then to execute system default application for selected file/directory, using this plugin. "You can open your favourite image editor for images, pdf reader for pdfs etc.
+Plugin 'ivalkeen/nerdtree-execute'
+
+Bundle 'jistr/vim-nerdtree-tabs'
+
 " vim-scripts repos  （vim-scripts仓库里的，按下面格式填写）
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'genutils'
+"Bundle 'genutils'
 Bundle 'minibufexplorerpp'
 " non github repos   (非上面两种情况的，按下面格式填写)
 Bundle 'git://git.wincent.com/command-t.git'
@@ -124,6 +130,28 @@ set incsearch
 set cmdheight=2
 filetype indent on
 syntax enable
+
+
+"""""""""""""""""""""""""""""""
+
+"" winManager setting
+
+"""""""""""""""""""""""""""""""
+
+"设置界面分割
+" 
+"let g:winManagerWindowLayout = "FileExplorer|TagList"
+"let g:winManagerWindowLayout = "TagList|BufExplorer"
+"设置winmanager的宽度，默认为25
+"let g:winManagerWidth = 30
+"           
+"定义打开关闭winmanager按键
+"            
+"nmap <silent> <F8> :WMToggle<cr>
+
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""新文件标题
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -206,7 +234,7 @@ imap jj <esc>
 "制定英文逗号作为leader 键	
 let mapleader=","
 "按F9，就可以关闭自动缩进,再按打开
-set pastetoggle=<F9>
+set pastetoggle=<F8>
 
 "列出当前目录文件
 map <F3> :NERDTreeToggle<CR>
@@ -266,9 +294,9 @@ set showmatch
 set matchtime=1
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 "当打开vim且没有文件时自动打开NERDTree
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 "" 只剩 NERDTree时自动关闭
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " 设置当文件被改动时自动载入
 
 
@@ -278,7 +306,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let Tlist_Sort_Type = "name" " 按照名称排序
 let Tlist_Use_Right_Window = 1 " 在右侧显示窗口
 let Tlist_Compart_Format = 1 " 压缩方式
-let Tlist_Exist_OnlyWindow = 1 " 如果只有一个buffer，kill窗口也kill掉buffer
+"let Tlist_Exist_OnlyWindow = 1 " 如果只有一个buffer，kill窗口也kill掉buffer
 let Tlist_File_Fold_Auto_Close = 0 " 不要关闭其他文件的tags
 " ""let Tlist_Enable_Fold_Column = 0 " 不要显示折叠树
 " "let Tlist_Show_One_File=1 "不同时显示多个文件的tag，只显示当前文件的
@@ -293,7 +321,8 @@ set autochdir
 " """"""""""""""""""""""""""""""
 " " Tag list (ctags)
 " """"""""""""""""""""""""""""""""
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+:set tags=./tags,/usr/include/tags,/usr/local/include/tags
+"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
@@ -320,3 +349,12 @@ let g:ctrlp_extensions = ['funky']
 " show match scopes
 let g:indentLine_char = '┊'
 let g:indentLine_color_term =239
+
+
+let NERDTreeShowHidden=1
+
+let NERDTreeShowLineNumbers=1
+let NERDTreeDirArrows=1
+"let g:nerdtree_tabs_open_on_console_startup=1
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
