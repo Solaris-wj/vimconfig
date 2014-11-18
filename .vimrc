@@ -31,18 +31,22 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'django_templates.vim'
 Bundle 'Django-Projects'
 Plugin 'Valloric/vim-operator-highlight'
-Plugin 'vim-scripts/winmanager'
-"Plugin 'vim-scripts/bufexplorer.zip'
+Plugin 'vim-scripts/bufexplorer.zip'
 "When navigating in NERDTree, select file or directory, press 'm' key, and NERDTree menu will appear. Press 'x' then to execute system default application for selected file/directory, using this plugin. "You can open your favourite image editor for images, pdf reader for pdfs etc.
 Plugin 'ivalkeen/nerdtree-execute'
 
 Bundle 'jistr/vim-nerdtree-tabs'
 
+Plugin 'vim-scripts/Tagbar'
+Plugin 'vim-scripts/winmanager'
+
+
+
 " vim-scripts repos  （vim-scripts仓库里的，按下面格式填写）
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 "Bundle 'genutils'
-Bundle 'minibufexplorerpp'
+"Bundle 'minibufexplorerpp'
 " non github repos   (非上面两种情况的，按下面格式填写)
 Bundle 'git://git.wincent.com/command-t.git'
 
@@ -130,26 +134,6 @@ set incsearch
 set cmdheight=2
 filetype indent on
 syntax enable
-
-
-"""""""""""""""""""""""""""""""
-
-"" winManager setting
-
-"""""""""""""""""""""""""""""""
-
-"设置界面分割
-" 
-"let g:winManagerWindowLayout = "FileExplorer|TagList"
-"let g:winManagerWindowLayout = "TagList|BufExplorer"
-"设置winmanager的宽度，默认为25
-"let g:winManagerWidth = 30
-"           
-"定义打开关闭winmanager按键
-"            
-"nmap <silent> <F8> :WMToggle<cr>
-
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -249,9 +233,21 @@ map gl :syn on<CR>
 "close file with  bd rather than q or x because minibuf confilct with ycm
 nmap <tab> :bn<CR>
 
+" Fast saving
+nnoremap <leader>w :w!<cr>
+" key bindings for quickly moving between windows
+" h left, l right, k up, j down
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+
+
+
+
 "代码格式优化化
 "
-map <F6> :call FormartSrc()<CR><CR>
+map <F7> :call FormartSrc()<CR><CR>
 "
 ""定义FormartSrc()
 func FormartSrc()
@@ -281,6 +277,7 @@ endfunc
 ""实用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "自动保存
+set shortmess=a
 set autoread
 set autowrite
 set cursorline              " 突出显示当前行
@@ -321,21 +318,27 @@ set autochdir
 " """"""""""""""""""""""""""""""
 " " Tag list (ctags)
 " """"""""""""""""""""""""""""""""
-:set tags=./tags,/usr/include/tags,/usr/local/include/tags
+":set tags=./tags,/usr/include/tags,/usr/local/include/tags
 "let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
+"let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的
+"let Tlist_File_Fold_Auto_Close = 1
+"let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " minibufexpl插件的一般设置
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
 "let g:miniBufExplForceSyntaxEnable =1
+
+
+
 "关闭minibuf时着色消失，这里自动打开
 autocmd BufUnload *.cpp,*.cc,*.c,*.h :syn on
-"autocmd FocusGained  *.cpp,*.cc,*.c,*.h :syn on
+autocmd BufWinEnter  *.cpp,*.cc,*.c,*.h call s:HighlightOperators()
 nmap tl :Tlist<cr>
 
 "ctrlp设置 -find files and names in buffer
@@ -357,4 +360,99 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeDirArrows=1
 "let g:nerdtree_tabs_open_on_console_startup=1
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"                       Tagbar
+""""""""""""""""""""""""""""""""""""""""""
+nmap tb :TagbarToggle<CR>
+let g:tagbar_ctags_bin='/usr/bin/ctags'
+let g:tagbar_width=30
+"let g:tagbar_left=1
+let g:tagbar_foldlevel = 1
+
+"To start exploring in the current window, use: >
+" \be   or   :BufExplorer   or   Your custom key mapping
+"To start exploring in a newly split horizontal window, use: >
+" \bs   or   :BufExplorerHorizontalSplit   or   Your custom key mapping
+"To start exploring in a newly split vertical window, use: >
+" \bv   or   :BufExplorerVerticalSplit   or   Your custom key mapping
+" 
+"nmap bf :BufExplorerVerticalSplit<CR>
+"let g:bufExplorerVertSize=20
+"let g:bufExplorerSplitHorzSize=20
+"let g:bufExplorerShowRelativePath=1 
+"let g:bufExplorerFindActive=0
+"let g:bufExplorerSplitOutPathName=0
+"let g:bufExplorerSortBy='mru'
+"let g:bufExplorerDefaultHelp=0
+
+"""""""""""""""""""""""""""""""
+ 
+"" winManager setting
+ 
+"""""""""""""""""""""""""""""""
+ 
+"设置界面分割
+" 
+let g:winManagerWindowLayout = "BufExplorer"
+"设置winmanager的宽度，默认为25
+let g:winManagerWidth = 30
+"定义打开关闭winmanager按键
+nmap <silent> wm :WMToggle<cr>
+
+
+if exists( 'g:loaded_operator_highlight' )
+  finish
+else
+  let g:loaded_operator_highlight = 1
+endif
+
+if !exists( 'g:ophigh_color_gui' )
+  let g:ophigh_color_gui = "cyan"
+endif
+
+if !exists( 'g:ophigh_color' )
+  let g:ophigh_color = "cyan"
+endif
+
+if !exists( 'g:ophigh_filetypes_to_ignore' )
+  let g:ophigh_filetypes_to_ignore = {}
+endif
+
+fun! s:IgnoreFiletypeIfNotSet( file_type )
+  if get( g:ophigh_filetypes_to_ignore, a:file_type, 1 )
+    let g:ophigh_filetypes_to_ignore[ a:file_type ] = 1
+  endif
+endfunction
+
+call s:IgnoreFiletypeIfNotSet('help')
+call s:IgnoreFiletypeIfNotSet('markdown')
+call s:IgnoreFiletypeIfNotSet('qf') " This is for the quickfix window
+call s:IgnoreFiletypeIfNotSet('conque_term')
+call s:IgnoreFiletypeIfNotSet('diff')
+call s:IgnoreFiletypeIfNotSet('html')
+call s:IgnoreFiletypeIfNotSet('css')
+call s:IgnoreFiletypeIfNotSet('less')
+call s:IgnoreFiletypeIfNotSet('xml')
+call s:IgnoreFiletypeIfNotSet('sh')
+call s:IgnoreFiletypeIfNotSet('bash')
+call s:IgnoreFiletypeIfNotSet('notes')
+call s:IgnoreFiletypeIfNotSet('jinja')
+
+fun! s:HighlightOperators()
+  if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
+    return
+  endif
+
+  " for the last element of the regex, see :h /\@!
+  " basically, searching for "/" is more complex since we want to avoid
+  " matching against "//" or "/*" which would break C++ comment highlighting
+  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+  exec "hi OperatorChars guifg=" . g:ophigh_color_gui . " gui=NONE"
+  exec "hi OperatorChars ctermfg=" . g:ophigh_color . " cterm=NONE"
+endfunction
+
+au Syntax * call s:HighlightOperators()
 
