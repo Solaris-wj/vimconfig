@@ -71,7 +71,8 @@ filetype plugin indent on     " required!   /** vimrc文件配置结束 **/
 "you complete me
 "在注释中提示
 
-nnoremap <F4> :YcmForceCompileAndDiagnostics<CR>
+"nnoremap <F4> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <F3> :YcmpCompleter GoToDefinition<CR>
 nnoremap <F2> :YcmCompleter GoTo<CR>
 "nnoremap <F3> :YcmCompleter GoToDefinition<CR>
 let g:ycm_complete_in_comments = 1
@@ -221,8 +222,8 @@ let mapleader=","
 set pastetoggle=<F8>
 
 "列出当前目录文件
-map <F3> :NERDTreeToggle<CR>
-imap <F3> <ESC> :NERDTreeToggle<CR>
+map <F4> :NERDTreeToggle<CR>
+imap <F4> <ESC> :NERDTreeToggle<CR>
 "打开树状文件目录  
 map <C-F3> \be  
 " cancel high light after gd or search patterns
@@ -396,13 +397,22 @@ let g:tagbar_foldlevel = 1
  
 "设置界面分割
 " 
+" buferplore
+let g:bufExplorerSortBy='fullpath' 
+let g:bufExplorerShowRelativePath=1 
+let g:bufExplorerDetailedHelp=0      " Do not show detailed help.
+let g:bufExplorerDefaultHelp=0       " Do not show default help.
+
 let g:winManagerWindowLayout = "BufExplorer"
 "设置winmanager的宽度，默认为25
 let g:winManagerWidth = 30
 "定义打开关闭winmanager按键
 nmap <silent> wm :WMToggle<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   operator highlight
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if exists( 'g:loaded_operator_highlight' )
   finish
 else
