@@ -17,7 +17,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
-Plugin 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
+Bundle 'git@github.com:Valloric/YouCompleteMe.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'  
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'https://github.com/vim-scripts/taglist.vim.git' 
@@ -39,7 +40,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 
 Plugin 'vim-scripts/Tagbar'
 Plugin 'vim-scripts/winmanager'
-
+Plugin 'vim-scripts/command-t.git'
 
 
 " vim-scripts repos  （vim-scripts仓库里的，按下面格式填写）
@@ -48,7 +49,7 @@ Bundle 'FuzzyFinder'
 "Bundle 'genutils'
 "Bundle 'minibufexplorerpp'
 " non github repos   (非上面两种情况的，按下面格式填写)
-Bundle 'git://git.wincent.com/command-t.git'
+"Bundle 'git://git.wincent.com/command-t.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -89,8 +90,15 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "来烦你了
 let g:ycm_confirm_extra_conf = 0
 "let g:ycm_extra_conf_globlist = [
-
-
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_semantic_triggers = {}
+let g:ycm_semantic_triggers.cxx = ['->', '.', ' ', '(', '[', '&']
+let g:ycm_semantic_triggers.cpp = ['->', '.', ' ', '(', '[', '&']
+let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
+let g:ycm_semantic_triggers.h = ['->', '.', ' ', '(', '[', '&']
+let g:ycm_semantic_triggers.hpp = ['->', '.', ' ', '(', '[', '&']
+let g:ycm_disable_for_files_larger_than_kb = 1000
+let g:ycm_min_num_of_chars_for_completion = 4
 "显示相关配置
 set cul "高亮光标所在行
 "set cuc
