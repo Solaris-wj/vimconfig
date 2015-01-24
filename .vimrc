@@ -13,7 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
@@ -40,12 +40,15 @@ Bundle 'jistr/vim-nerdtree-tabs'
 
 Plugin 'vim-scripts/Tagbar'
 Plugin 'vim-scripts/winmanager'
-Plugin 'vim-scripts/command-t.git'
+"Plugin 'git@github.com:Shougo/neocomplcache.vim.git'
+Plugin 'powerline/powerline'
+"Plugin 'vim-scripts/command-t.git'
 
 
 " vim-scripts repos  （vim-scripts仓库里的，按下面格式填写）
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
+"Bundle 'git@github.com:Raimondi/delimitMate.git'
 "Bundle 'genutils'
 "Bundle 'minibufexplorerpp'
 " non github repos   (非上面两种情况的，按下面格式填写)
@@ -370,6 +373,13 @@ let NERDTreeDirArrows=1
 "let g:nerdtree_tabs_open_on_console_startup=1
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
+""""""""""""""""""""""""""""""""""""""""""
+"                       power line
+""""""""""""""""""""""""""""""""""""""""""
+set guifont=PowerlineSymbols\ for\ Powerline
+ set nocompatible
+ set t_Co=256
+ let g:Powerline_symbols = 'fancy'
 
 
 """"""""""""""""""""""""""""""""""""""""""
