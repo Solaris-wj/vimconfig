@@ -1,98 +1,470 @@
-set nocompatible               " be iMproved
-filetype off                   " required!       /**  从这行开始，vimrc配置 **/
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'git@github.com:Valloric/YouCompleteMe.git'
-Plugin 'https://github.com/scrooloose/nerdtree.git'  
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'https://github.com/vim-scripts/taglist.vim.git' 
-Bundle 'Yggdroot/indentLine'
-Bundle 'ctrlp.vim'
-
-Bundle 'jslint.vim'
-Bundle "pangloss/vim-javascript"
-Bundle 'jsbeautify'
-Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'django_templates.vim'
-Bundle 'Django-Projects'
-Plugin 'Valloric/vim-operator-highlight'
-Plugin 'vim-scripts/bufexplorer.zip'
-"When navigating in NERDTree, select file or directory, press 'm' key, and NERDTree menu will appear. Press 'x' then to execute system default application for selected file/directory, using this plugin. "You can open your favourite image editor for images, pdf reader for pdfs etc.
-Plugin 'ivalkeen/nerdtree-execute'
-
-Bundle 'jistr/vim-nerdtree-tabs'
-
-Plugin 'vim-scripts/Tagbar'
-Plugin 'vim-scripts/winmanager'
-"Plugin 'git@github.com:Shougo/neocomplcache.vim.git'
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'powerline/powerline'
-"Plugin 'vim-scripts/command-t.git'
-
-
-" vim-scripts repos  （vim-scripts仓库里的，按下面格式填写）
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-"Bundle 'git@github.com:Raimondi/delimitMate.git'
-"Bundle 'genutils'
-"Bundle 'minibufexplorerpp'
-" non github repos   (非上面两种情况的，按下面格式填写)
-"Bundle 'git://git.wincent.com/command-t.git'
-
-" All of your Plugins must be added before the following line
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlp.vim'
+" Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'scrooloose/nerdcommenter'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'fholgado/minibufexpl.vim'
+Plugin 'molokai'
+Plugin 'vim-colors-solarized'
+" Plugin 'nathanaelkane/vim-indent-guides'
 call vundle#end()            " required
-
-filetype plugin indent on     " required!   /** vimrc文件配置结束 **/
-"To gnore plugin indent changes, instead use:
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo 
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"   
-" see :h vundle for more details or wiki for FAQ 
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" NOTE: comments after Bundle command are not allowed..
 
-"you complete me
-"在注释中提示
 
-"nnoremap <F4> :YcmForceCompileAndDiagnostics<CR>
-nnoremap <F3> :YcmpCompleter GoToDefinition<CR>
-nnoremap <F2> :YcmCompleter GoTo<CR>
-"nnoremap <F3> :YcmCompleter GoToDefinition<CR>
-let g:ycm_complete_in_comments = 1
+
+""""""""""""""''''
+
+" 显示相关
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
+
+"winpos 5 5          " 设定窗口位置
+
+"set lines=40 columns=155    " 设定窗口大小
+
+"set nu              " 显示行号
+
+set go=             " 不要图形按钮
+
+"syntax on           " 语法高亮
+
+autocmd InsertLeave * se nocul  " 用浅色高亮当前行
+
+autocmd InsertEnter * se cul    " 用浅色高亮当前行
+
+"set ruler           " 显示标尺
+
+set showcmd         " 输入的命令显示出来，看的清楚些
+
+"set cmdheight=1     " 命令行（在状态行下）的高度，设置为1
+
+"set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)
+
+"set scrolloff=3     " 光标移动到buffer的顶部和底部时保持3行距离
+
+set novisualbell    " 不要闪烁(不明白)
+
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [encoding=%{&encoding}]\ [POS=%l,%v][%p%%]\  "状态行显示的内容
+ "set statusline=%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\
+
+set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)
+
+" set foldenable      " 允许折叠
+set nofoldenable
+
+" set foldmethod=manual   " 手动折叠
+
+"set background=dark "背景使用黑色
+
+set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
+
+" 显示中文帮助
+
+if version >= 603
+
+    set helplang=cn
+
+    set encoding=utf-8
+
+endif
+
+" 设置配色方案
+" >> 主题风格
+" 配色方案
+let g:solarized_termcolors=256
+set t_Co=256
+set background=dark
+colorscheme molokai
+
+let g:Powerline_colorscheme='solarized256'
+
+
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312
+
+set termencoding=utf-8
+
+set encoding=utf-8
+
+set fileencodings=ucs-bom,utf-8
+
+set fileencoding=utf-8
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"新建.c,.h,.sh,.java文件，自动插入文件头
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"键盘命令
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+let mapleader=','
+
+nmap <leader>w :w!<cr>
+
+nmap <leader>f :find<cr>
+
+
+
+" 映射全选+复制 ctrl+a
+
+map <C-A> ggVGY
+
+map! <C-A> <Esc>ggVGY
+
+map <F12> gg=G
+
+" 选中状态下 Ctrl+c 复制
+
+vmap <C-c> "+y
+
+"去空行
+
+nnoremap <F2> :g/^\s*$/d<CR>
+
+
+"新建标签
+
+map <M-F2> :tabnew<CR>
+
+"列出当前目录文件
+
+map <F3> :tabnew .<CR>
+
+"打开树状文件目录
+
+map <C-F3> \be
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""实用设置
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 设置当文件被改动时自动载入
+
+set autoread
+
+"代码补全
+
+set completeopt=preview,menu
+
+"允许插件
+
+filetype plugin on
+
+"共享剪贴板
+
+set clipboard+=unnamed
+
+"从不备份
+
+set nobackup
+
+"自动保存
+
+set autowrite
+
+set ruler                   " 打开状态栏标尺
+
+set cursorline              " 突出显示当前行
+
+set magic                   " 设置魔术
+
+set guioptions-=T           " 隐藏工具栏
+
+set guioptions-=m           " 隐藏菜单栏
+
+"set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\
+
+" 设置在状态行显示的信息
+
+set foldcolumn=0
+
+set foldmethod=indent
+
+set foldlevel=3
+
+" 语法高亮
+syntax enable
+set syntax=on
+
+" 去掉输入错误的提示声音
+
+set noeb
+
+" 在处理未保存或只读文件的时候，弹出确认
+
+set confirm
+
+" 自动缩进
+
+set autoindent
+
+set cindent
+
+" Tab键的宽度
+
+set tabstop=4
+
+" 统一缩进为4
+
+set softtabstop=4
+
+set shiftwidth=4
+
+" 不要用空格代替制表符
+
+set expandtab
+
+
+" 显示行号
+
+set number
+
+" 历史记录数
+
+set history=1000
+
+"禁止生成临时文件
+
+" set nobackup
+
+set noswapfile
+
+"搜索忽略大小写
+
+" "set ignorecase
+
+"搜索逐字符高亮
+
+set hlsearch
+
+set incsearch
+
+"行内替换
+
+set gdefault
+
+"编码设置
+
+set enc=utf-8
+
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312
+
+"语言设置
+
+set langmenu=zh_CN.UTF-8
+
+set helplang=cn
+
+
+" 总是显示状态行
+
+set laststatus=2
+
+" 命令行（在状态行下）的高度，默认为1，这里是2
+
+set cmdheight=2
+
+" 侦测文件类型
+
+filetype on
+
+" 载入文件类型插件
+
+filetype plugin on
+
+" 为特定文件类型载入相关缩进文件
+
+filetype indent on
+
+" 保存全局变量
+
+set viminfo+=!
+
+" 带有如下符号的单词不要被换行分割
+
+set iskeyword+=_,$,@,%,#,-
+
+" 字符间插入的像素行数目
+
+set linespace=0
+
+" 增强模式中的命令行自动完成操作
+
+set wildmenu
+
+" 使回格键（backspace）正常处理indent, eol, start等
+
+set backspace=2
+
+" 允许backspace和光标键跨越行边界
+
+set whichwrap+=<,>,h,l
+
+" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
+" 通过使用: commands命令，告诉我们文件的哪一行被改变过
+
+set report=0
+
+" 在被分割的窗口间显示空白，便于阅读
+
+set fillchars=vert:\ ,stl:\ ,stlnc:\
+
+" 高亮显示匹配的括号
+
+set showmatch
+
+" 匹配括号高亮的时间（单位是十分之一秒）
+
+set matchtime=1
+
+" 光标移动到buffer的顶部和底部时保持3行距离
+
+set scrolloff=3
+
+" 为C程序提供自动缩进
+
+set smartindent
+
+" 高亮显示普通txt文件（需要txt.vim脚本）
+
+au BufRead,BufNewFile *  setfiletype txt
+
+
+filetype plugin indent on
+
+"打开文件类型检测, 加了这句才可以用智能补全
+
+set completeopt=longest,menu
+
+" 随 vim 自启动
+let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+let g:indent_guides_start_level=2
+" 色块宽度
+let g:indent_guides_guide_size=1
+" 快捷键 i 开/关缩进可视化
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" CTags的设定
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let Tlist_Sort_Type = "name"    " 按照名称排序
+
+let Tlist_Use_Right_Window = 1  " 在右侧显示窗口
+
+let Tlist_Compart_Format = 1    " 压缩方式
+
+let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
+
+let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags
+
+let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树
+
+
+"autocmd FileType h,cpp,cc,c set tags+=D:\tools\cpp\tags
+
+"let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
+
+"设置tags
+
+set tags=tags
+
+"set autochdir
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"其他东东
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"默认打开Taglist
+
+let Tlist_Auto_Open=1
+
+""""""""""""""""""""""""""""""
+
+" Tag list (ctags)
+
+""""""""""""""""""""""""""""""""
+
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的
+
+let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
+
+let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
+
+" minibufexpl插件的一般设置
+
+let g:miniBufExplMapWindowNavVim = 1
+
+let g:miniBufExplMapWindowNavArrows = 1
+
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
+set clipboard=unnamed
+
+"按F8，就可以关闭自动缩进,再按打开
+" set pastetoggle=<C-S-p>
+set pastetoggle=<leader>p
+let g:ycm_python_binary_path = 'python'
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
 "自动关闭提示窗口
-"let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-"语义提示快捷键 ctrl+space
-"let g:ycm_key_invoke_completion = '<C-Space>'
-
-let g:ycm_key_invoke_completion = '<c-y>'
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-"决定了在导入配置时是否需要手动确认。设置为0后YCM就不会老是在启动vim的时候
-"来烦你了
-let g:ycm_confirm_extra_conf = 0
-"let g:ycm_extra_conf_globlist = [
+nnoremap <F3> :YcmpCompleter GoToDefinition<CR>
+nnoremap <F2> :YcmCompleter GoTo<CR>
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_semantic_triggers = {}
 let g:ycm_semantic_triggers.cxx = ['->', '.', ' ', '(', '[', '&']
@@ -101,257 +473,29 @@ let g:ycm_semantic_triggers.c = ['->', '.', ' ', '(', '[', '&']
 let g:ycm_semantic_triggers.h = ['->', '.', ' ', '(', '[', '&']
 let g:ycm_semantic_triggers.hpp = ['->', '.', ' ', '(', '[', '&']
 let g:ycm_disable_for_files_larger_than_kb = 1000
-let g:ycm_min_num_of_chars_for_completion = 4
-"显示相关配置
-set cul "高亮光标所在行
-"set cuc
-color ron
-"autocmd InsertEnter * se cul    " 用浅色高亮当前行 
-"set ruler           " 显示标尺  
-set showcmd         " 输入的命令显示出来，看的清楚些  
-set scrolloff=5     " 光标移动到buffer的顶部和底部时保持3行距离  
-
-set laststatus =2
-" 显示中文帮助
-if version >= 603
-    set helplang=cn
-    set encoding=utf-8
-endif
-" 自动缩进
-set smartindent
-set smarttab
-set autoindent
-set cindent
-" Tab键的宽度
-set expandtab
-set tabstop=4
-" " 统一缩进为4
-set softtabstop=4
-set shiftwidth=4
-"replate tab by four spaces
-nmap tt :%s/\t/    /g<CR>
-set sm
-set sw=4
-set ts=4
-" 显示行号
-set number
-" " 历史记录数
-set history=1000
-"搜索逐字符高亮
-set hlsearch
-set incsearch
-set hlsearch
-set incsearch
-"always show status line
-set cmdheight=2
-filetype indent on
-syntax enable
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_auto_trigger = 0
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""新文件标题
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.c,*.cc,*.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-    "如果文件类型为.sh文件 
-    if &filetype == 'sh' 
-        call setline(1,"\#!/bin/bash") 
-        call append(line("."), "") 
-    elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python")
-        call append(line("."),"# coding=utf-8")
-        call append(line(".")+1, "") 
+" Tagbar
+let g:tagbar_width=25
+let g:tagbar_autofocus=1
+nmap <S-l> :TagbarToggle<CR>
 
-    elseif &filetype == 'ruby'
-        call setline(1,"#!/usr/bin/env ruby")
-        call append(line("."),"# encoding: utf-8")
-        call append(line(".")+1, "")
-
-    elseif &filetype == 'mkd'
-        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-    else 
-        call setline(1, "/*************************************************************************") 
-        call append(line("."), "	> File Name: ".expand("%")) 
-        call append(line(".")+1, "	> Author: ") 
-        call append(line(".")+2, "	> Mail: ") 
-        call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-        call append(line(".")+4, " ************************************************************************/") 
-        call append(line(".")+5, "")
-    endif
-    if expand("%:e") == 'cpp'
-        "call append(line(".")+6, "#include<iostream>")
-        "call append(line(".")+7, "using namespace std;")
-        "call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-        "call append(line(".")+6, "#include<stdio.h>")
-        "call append(line(".")+7, "")
-    endif
-    if expand("%:e") == 'h'
-        call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-        call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
-        call append(line(".")+8, "#endif")
-    endif
-    if &filetype == 'java'
-        "call append(line(".")+6,"public class ".expand("%:r"))
-        "call append(line(".")+7,"")
-    endif
-    "新建文件后，自动定位到文件末尾
-endfunc 
-autocmd BufNewFile * normal G
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"键盘命令
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:nmap <silent> <F9> <ESC>:Tlist<RETURN>
-" shift tab pages
-map <S-Left> :tabp<CR>
-map <S-Right> :tabn<CR>
-map! <C-Z> <Esc>zzi
-map! <C-O> <C-Y>,
-map <C-A> ggVG$"+y
-"自动排版，自动缩进 也可以用 gg, v, G, =
-map <F12> gg=G
-map <C-w> <C-w>w
-"imap <C-k> <C-y>,
-imap <C-t> <C-q><TAB>
-imap <C-j> <ESC>
-" " 选中状态下 Ctrl+c 复制
-map <C-v> "*pa
-imap <C-v> <Esc>"*pa
-imap <C-a> <Esc>^
-imap <C-e> <Esc>$
-vmap <C-c> "+y
-set mouse=v
-imap jj <esc>
-"制定英文逗号作为leader 键	
-let mapleader=","
-"按F9，就可以关闭自动缩进,再按打开
-set pastetoggle=<F8>
-
-"列出当前目录文件
-map <F4> :NERDTreeToggle<CR>
-imap <F4> <ESC> :NERDTreeToggle<CR>
-"打开树状文件目录  
-map <C-F3> \be  
-" cancel high light after gd or search patterns
-map gc :nohl<CR>
-"打开语法高亮
-map gl :syn on<CR>
-"switch between opened files
-"close file with  bd rather than q or x because minibuf confilct with ycm
-nmap <tab> :bn<CR>
-
-" Fast saving
-nnoremap <leader>w :w!<cr>
-" key bindings for quickly moving between windows
-" h left, l right, k up, j down
-noremap <c-h> <c-w>h
-noremap <c-l> <c-w>l
-noremap <c-k> <c-w>k
-noremap <c-j> <c-w>j
-
-
-
-
-"代码格式优化化
-"
-map <F7> :call FormartSrc()<CR><CR>
-"
-""定义FormartSrc()
-func FormartSrc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!astyle --style=ansi -a --suffix=none %"
-    elseif &filetype == 'cpp' || &filetype == 'hpp'
-        exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
-    elseif &filetype == 'perl'
-        exec "!astyle --style=gnu --suffix=none %"
-    elseif &filetype == 'py'||&filetype == 'python'
-        exec "r !autopep8 -i --aggressive %"
-    elseif &filetype == 'java'
-        exec "!astyle --style=java --suffix=none %"
-    elseif &filetype == 'jsp'
-        exec "!astyle --style=gnu --suffix=none %"
-    elseif &filetype == 'xml'
-        exec "!astyle --style=gnu --suffix=none %"
-    else
-        exec "normal gg=G"
-        return
-    endif
-    exec "e! %"
-endfunc
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""实用设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"自动保存
-set shortmess=a
-set autoread
-set autowrite
-set cursorline              " 突出显示当前行
-set magic                   " 设置魔术
-set mouse=a
-" 在被分割的窗口间显示空白，便于阅读
-" set fillchars=vert:\ ,stl:\ ,stlnc:\
-" 高亮显示匹配的括号
-set showmatch
-" 匹配括号高亮的时间（单位是十分之一秒）
-set matchtime=1
-autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
-"当打开vim且没有文件时自动打开NERDTree
-"autocmd vimenter * if !argc() | NERDTree | endif
-"" 只剩 NERDTree时自动关闭
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" 设置当文件被改动时自动载入
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CTags的设定
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Tlist_Sort_Type = "name" " 按照名称排序
-let Tlist_Use_Right_Window = 1 " 在右侧显示窗口
-let Tlist_Compart_Format = 1 " 压缩方式
-"let Tlist_Exist_OnlyWindow = 1 " 如果只有一个buffer，kill窗口也kill掉buffer
-let Tlist_File_Fold_Auto_Close = 0 " 不要关闭其他文件的tags
-" ""let Tlist_Enable_Fold_Column = 0 " 不要显示折叠树
-" "let Tlist_Show_One_File=1 "不同时显示多个文件的tag，只显示当前文件的
-" "设置tags
-set tags=tags
-set autochdir
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "其他东东
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "默认打开Taglist
-" let Tlist_Auto_Open=0
-" """"""""""""""""""""""""""""""
-" " Tag list (ctags)
-" """"""""""""""""""""""""""""""""
-":set tags=./tags,/usr/include/tags,/usr/local/include/tags
-"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-"let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的
-"let Tlist_File_Fold_Auto_Close = 1
-"let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
-"let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " minibufexpl插件的一般设置
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1
-"let g:miniBufExplForceSyntaxEnable =1
-
-
-
-"关闭minibuf时着色消失，这里自动打开
-autocmd BufUnload *.cpp,*.cc,*.c,*.h :syn on
-autocmd BufWinEnter  *.cpp,*.cc,*.c,*.h call s:HighlightOperators()
-nmap tl :Tlist<cr>
+" NERD tree
+let NERDChristmasTree=0
+let NERDTreeWinSize=25
+let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+let NERDTreeShowBookmarks=1
+let NERDTreeWinPos="left"
+" Automatically open a NERDTree if no files where specified
+" autocmd vimenter * if !argc() | NERDTree | endif
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Open a NERDTree
+nmap <S-f> :NERDTreeToggle<cr>
+nmap <S-i> \be
 
 "ctrlp设置 -find files and names in buffer
 "
@@ -361,126 +505,49 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif     " MacOSX/Li
 "ctrlp extensions ctrlp funky
 let g:ctrlp_extensions = ['funky']
 
-" show match scopes
-let g:indentLine_char = '┊'
-let g:indentLine_color_term =239
+" 显示/隐藏 MiniBufExplorer 窗口
+map <Leader>bl :MBEToggle<cr>
+" buffer 切换快捷键
+map <S-Tab> :MBEbn<cr>
+map <C-S-Tab> :MBEbp<cr>
 
+" *.cpp 和 *.h 间切换
+nmap <silent> <leader>s :FSHere<cr>
+" <leader>cc，注释当前选中文本，如果选中的是整行则在每行首添加 //，如果选中一行的部分内容则在选中部分前后添加分别 /、/；
+" <leader>cu，取消选中文本块的注释。
 
-let NERDTreeShowHidden=1
+set fileencodings=utf-8,gbk,gb18030
+set mouse=v
 
-let NERDTreeShowLineNumbers=1
-let NERDTreeDirArrows=1
-"let g:nerdtree_tabs_open_on_console_startup=1
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
-""""""""""""""""""""""""""""""""""""""""""
-"                       power line
-""""""""""""""""""""""""""""""""""""""""""
-set guifont=PowerlineSymbols\ for\ Powerline
- set nocompatible
- set t_Co=256
- let g:Powerline_symbols = 'fancy'
+" insert mode
+imap <C-h> <LEFT>
+imap <C-l> <RIGHT>
+imap <C-k> <UP>
+imap <C-j> <DOWN>
 
+" 设置快捷键将选中文本块复制至系统剪贴板
+nmap <Leader>y "+y
+nmap <Leader>c "+y
+" 设置快捷键将系统剪贴板内容粘贴至 vim
+nmap <Leader>p "+p
+nmap <Leader>v "+p
 
-""""""""""""""""""""""""""""""""""""""""""
-"                       Tagbar
-""""""""""""""""""""""""""""""""""""""""""
-nmap tb :TagbarToggle<CR>
-let g:tagbar_ctags_bin='/usr/bin/ctags'
-let g:tagbar_width=30
-"let g:tagbar_left=1
-let g:tagbar_foldlevel = 1
+set undodir=~/.undo_history/
+set undofile
 
-"To start exploring in the current window, use: >
-" \be   or   :BufExplorer   or   Your custom key mapping
-"To start exploring in a newly split horizontal window, use: >
-" \bs   or   :BufExplorerHorizontalSplit   or   Your custom key mapping
-"To start exploring in a newly split vertical window, use: >
-" \bv   or   :BufExplorerVerticalSplit   or   Your custom key mapping
-" 
-"nmap bf :BufExplorerVerticalSplit<CR>
-"let g:bufExplorerVertSize=20
-"let g:bufExplorerSplitHorzSize=20
-"let g:bufExplorerShowRelativePath=1 
-"let g:bufExplorerFindActive=0
-"let g:bufExplorerSplitOutPathName=0
-"let g:bufExplorerSortBy='mru'
-"let g:bufExplorerDefaultHelp=0
-
-"""""""""""""""""""""""""""""""
- 
-"" winManager setting
- 
-"""""""""""""""""""""""""""""""
- 
-"设置界面分割
-" 
-" buferplore
-let g:bufExplorerSortBy='fullpath' 
-let g:bufExplorerShowRelativePath=1 
-let g:bufExplorerDetailedHelp=0      " Do not show detailed help.
-let g:bufExplorerDefaultHelp=0       " Do not show default help.
-
-let g:winManagerWindowLayout = "BufExplorer"
-"设置winmanager的宽度，默认为25
-let g:winManagerWidth = 30
-"定义打开关闭winmanager按键
-nmap <silent> wm :WMToggle<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   operator highlight
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if exists( 'g:loaded_operator_highlight' )
-  finish
-else
-  let g:loaded_operator_highlight = 1
-endif
-
-if !exists( 'g:ophigh_color_gui' )
-  let g:ophigh_color_gui = "cyan"
-endif
-
-if !exists( 'g:ophigh_color' )
-  let g:ophigh_color = "cyan"
-endif
-
-if !exists( 'g:ophigh_filetypes_to_ignore' )
-  let g:ophigh_filetypes_to_ignore = {}
-endif
-
-fun! s:IgnoreFiletypeIfNotSet( file_type )
-  if get( g:ophigh_filetypes_to_ignore, a:file_type, 1 )
-    let g:ophigh_filetypes_to_ignore[ a:file_type ] = 1
-  endif
-endfunction
-
-call s:IgnoreFiletypeIfNotSet('help')
-call s:IgnoreFiletypeIfNotSet('markdown')
-call s:IgnoreFiletypeIfNotSet('qf') " This is for the quickfix window
-call s:IgnoreFiletypeIfNotSet('conque_term')
-call s:IgnoreFiletypeIfNotSet('diff')
-call s:IgnoreFiletypeIfNotSet('html')
-call s:IgnoreFiletypeIfNotSet('css')
-call s:IgnoreFiletypeIfNotSet('less')
-call s:IgnoreFiletypeIfNotSet('xml')
-call s:IgnoreFiletypeIfNotSet('sh')
-call s:IgnoreFiletypeIfNotSet('bash')
-call s:IgnoreFiletypeIfNotSet('notes')
-call s:IgnoreFiletypeIfNotSet('jinja')
-
-fun! s:HighlightOperators()
-  if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
-    return
-  endif
-
-  " for the last element of the regex, see :h /\@!
-  " basically, searching for "/" is more complex since we want to avoid
-  " matching against "//" or "/*" which would break C++ comment highlighting
-  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-  exec "hi OperatorChars guifg=" . g:ophigh_color_gui . " gui=NONE"
-  exec "hi OperatorChars ctermfg=" . g:ophigh_color . " cterm=NONE"
-endfunction
-
-au Syntax * call s:HighlightOperators()
-
+set ruler " 显示光标当前位置
+"高亮显示当前行/列
+set cursorline
+set tags=tags;
+set tags+=../tags
+set tags+=../../tags
+set tags+=../../../tags
+set tags+=../../../../tags
+set tags+=../../../../../tags
+set tags+=../../../../../../tags
+set autochdir
